@@ -20,19 +20,6 @@ for (let j=0; j<document.querySelectorAll("#choose_panel tr").length - 1; j++) {
 		document.querySelectorAll("#choose_panel tr")[j+1].querySelectorAll("input[type='radio']")[num].checked = true;
 }
 
-3. Перейти к вопросу номер N:
-
-var N = 15; //введите нужное число вместо 15
-
-var Click = new Event("click");
-for (let i=0; i<N; i++) {
-	for (let j=0; j<document.querySelectorAll("#choose_panel tr").length - 1; j++) {
-		let num = Math.floor(Math.random() * 5);
-		document.querySelectorAll("#choose_panel tr")[j+1].querySelectorAll("input[type='radio']")[num].checked = true;
-	}
-	document.querySelector("#continue").dispatchEvent(Click);
-}
-
 4. От и до (сразу к случайным результатам):
 
 var Click = new Event("click");
