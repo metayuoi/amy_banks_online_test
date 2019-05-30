@@ -39,7 +39,7 @@
     }
     td {text-align: center;}
     #choose_panel {
-        display: block;
+        display: table;
         transform: translateX(-25px);
 		width: 100%;
         max-width: 700px;
@@ -125,16 +125,13 @@
     }
 	tr {
 		height: 30px;
-		position: relative;
 	}
     .name1, .name2, .name3, .name4, .name5 {
         position: relative;
         top: -15px; /* -(tr.height/2) */
         font-variant-caps: petite-caps;
+		min-width: 200px;
     }
-	#choose_panel tr td:first-of-type {
-		width: 200px;
-	}
     button {
         padding: 10px 20px;
         border-radius: 5px;
@@ -257,7 +254,7 @@ var safety = ["Связи в этой категории достаточно п
 </div>
 <div class="second_step hidden">
     <h2 id="question"></h2>
-    <table id="choose_panel">
+    <table id="choose_panel"><form name="choose_panel">
         <tr><td></td><td class="desc">
             <li>никогда
             <li>почти никогда
@@ -265,42 +262,42 @@ var safety = ["Связи в этой категории достаточно п
             <li>часто
             <li>почти всегда
             </td></tr>
-		<tr><td><div class="name1"></div></td><td class="check v1">
+        <tr><td class="name1"></td><td class="check v1">
             <label><input type="radio" name="person1" value="1"><img src="mark.jpg"><div><span>никогда</span></div></label>
             <label><input type="radio" name="person1" value="2"><img src="mark.jpg"><div><span>редко или крайне редко</span></div></label>
             <label><input type="radio" name="person1" value="3"><img src="mark.jpg"><div><span>время от времени</span></div></label>
             <label><input type="radio" name="person1" value="4"><img src="mark.jpg"><div><span>достаточно часто</span></div></label>
             <label><input type="radio" name="person1" value="5"><img src="mark.jpg"><div><span>в большинстве случаев</span></div></label>
         </td></tr>
-        <tr><td><div class="name2"></div></td><td class="check">
+        <tr><td class="name2"></td><td class="check">
             <label><input type="radio" name="person2" value="1"><img src="mark.jpg"></label>
             <label><input type="radio" name="person2" value="2"><img src="mark.jpg"></label>
             <label><input type="radio" name="person2" value="3"><img src="mark.jpg"></label>
             <label><input type="radio" name="person2" value="4"><img src="mark.jpg"></label>
             <label><input type="radio" name="person2" value="5"><img src="mark.jpg"></label>
         </td></tr>
-        <tr><td><div class="name3"></div></td><td class="check">
+        <tr><td class="name3"></td><td class="check">
             <label><input type="radio" name="person3" value="1"><img src="mark.jpg"></label>
             <label><input type="radio" name="person3" value="2"><img src="mark.jpg"></label>
             <label><input type="radio" name="person3" value="3"><img src="mark.jpg"></label>
             <label><input type="radio" name="person3" value="4"><img src="mark.jpg"></label>
             <label><input type="radio" name="person3" value="5"><img src="mark.jpg"></label>
         </td></tr>
-        <tr><td><div class="name4"></div></td><td class="check">
+        <tr><td class="name4"></td><td class="check">
             <label><input type="radio" name="person4" value="1"><img src="mark.jpg"></label>
             <label><input type="radio" name="person4" value="2"><img src="mark.jpg"></label>
             <label><input type="radio" name="person4" value="3"><img src="mark.jpg"></label>
             <label><input type="radio" name="person4" value="4"><img src="mark.jpg"></label>
             <label><input type="radio" name="person4" value="5"><img src="mark.jpg"></label>
         </td></tr>
-        <tr><td><div class="name5"></div></td><td class="check">
+        <tr><td class="name5"></td><td class="check">
             <label><input type="radio" name="person5" value="1"><img src="mark.jpg"></label>
             <label><input type="radio" name="person5" value="2"><img src="mark.jpg"></label>
             <label><input type="radio" name="person5" value="3"><img src="mark.jpg"></label>
             <label><input type="radio" name="person5" value="4"><img src="mark.jpg"></label>
             <label><input type="radio" name="person5" value="5"><img src="mark.jpg"></label>
         </td></tr>
-        </table>
+        </form></table>
 </div>
 <button id="continue">Далее</button>
 <div id="progress"></div>
@@ -314,10 +311,10 @@ var safety = ["Связи в этой категории достаточно п
             <td>E — энергия / energie </td>
         </tr>
         <tr class="total_score">
-            <td class="C"></td>
-            <td class="A"></td>
-            <td class="R"></td>
-            <td class="E"></td>
+            <td class="C">gdg</td>
+            <td class="A">ger</td>
+            <td class="R">g</td>
+            <td class="E">g</td>
         </tr>
     </table>
     <div class="groups">
@@ -337,7 +334,7 @@ var field = document.getElementById("question");
 var next = document.getElementById("continue");
 next.onclick = firstStep;
 function firstStep() {
-    for (i=0; i<5; i++) {
+    for (let i=0; i<5; i++) {
         if (document.querySelectorAll("#names input")[i].value !== "") {persons[i].push(document.querySelectorAll("#names input")[i].value);}
         else {alert("Заполните все поля!"); return}
     }
@@ -346,7 +343,7 @@ function firstStep() {
     document.querySelector(".first_step").classList.add("hidden");
     document.querySelector("#description").classList.add("hidden");
     document.querySelector(".second_step").classList.remove("hidden");
-    for (i=0; i<persons.length; i++) {
+    for (let i=0; i<persons.length; i++) {
         document.querySelector(".name" + (i+1).toString()).innerText = persons[i][1];
     }
     next.onclick = function() {countRefresh(1)};
@@ -357,7 +354,7 @@ var checkPoints = [[175, 135, 100], [175, 135, 100], [125, 95, 70], [100, 75, 55
 	
 function countRefresh(num) {
     var factor = questions[num-1][1];
-    for (i=0; i<factor.length; i++) {
+    for (let i=0; i<factor.length; i++) {
         var x = legend.indexOf(factor[i]);
         for (j=0; j<5; j++) {
             var y = String(j+1)
@@ -378,7 +375,7 @@ function countRefresh(num) {
             document.querySelector("#progress").innerText = "Осталось " + (questions.length - num).toString() + " вопроса"}
         else {document.querySelector("#progress").innerText = "Осталось " + (questions.length - num).toString() + " вопросов"}
     }
-    for (i=0; i<4; i++) {
+    for (let i=0; i<4; i++) {
         var q = persons[0][0][i] + persons[1][0][i] + persons[2][0][i] + persons[3][0][i] + persons[4][0][i];}
     if (num < questions.length) {
         field.innerHTML = questions[num][0];
@@ -391,7 +388,7 @@ function result() {
     document.querySelector(".second_step").classList.add("hidden");
     document.querySelector("#continue").classList.add("hidden");
     document.querySelector(".results").classList.remove("hidden");
-    for (i=0; i<4; i++) {
+    for (let i=0; i<4; i++) {
         var q = persons[0][0][i] + persons[1][0][i] + persons[2][0][i] + persons[3][0][i] + persons[4][0][i];
 		var recent = legend[i];
 		var key = checkPoints[i];
@@ -408,13 +405,13 @@ function result() {
             document.querySelector(".total_score ." + recent + "").classList.add("red");
         }
     }
-    for (i=0; i<5; i++) {
+    for (let i=0; i<5; i++) {
         var q = persons[i][0][0] + persons[i][0][1] + persons[i][0][2] + persons[i][0][3];
         if (q > 75) {document.querySelector("#high").innerHTML += "<li>" + persons[i][1] + ""}
             else if (q > 50) {document.querySelector("#medium").innerHTML += "<li>" + persons[i][1] + ""}
             else {document.querySelector("#low").innerHTML += "<li>" + persons[i][1] + ""}
     }
-    for (i=0; i<document.querySelectorAll(".groups table td").length; i++) {
+    for (let i=0; i<document.querySelectorAll(".groups table td").length; i++) {
         if (document.querySelectorAll(".groups table td")[i].innerText === "") {document.querySelectorAll(".groups table td")[i].innerText = "никто"}
     }
 }
