@@ -4,18 +4,18 @@
 :: СКРИПТ ДЛЯ АВТОМАТИЧЕСКОГО ДЕМО-ПРОХОЖДЕНИЯ ::
 
 var Click = new Event("click");
-document.querySelectorAll("input[type='text']")[0].value = "Первый";
-document.querySelectorAll("input[type='text']")[1].value = "Второй";
-document.querySelectorAll("input[type='text']")[2].value = "Третья";
-document.querySelectorAll("input[type='text']")[3].value = "Четвёртая";
-document.querySelectorAll("input[type='text']")[4].value = "Пятый";
+document.querySelectorAll("input[type='text']")[0].value = "Вася";
+document.querySelectorAll("input[type='text']")[1].value = "Аня";
+document.querySelectorAll("input[type='text']")[2].value = "Коля";
+document.querySelectorAll("input[type='text']")[3].value = "Петя";
+document.querySelectorAll("input[type='text']")[4].value = "Саша";
 document.querySelector("#continue").dispatchEvent(Click);
 
 var phase = 0;
 var current = 0;
 
 var goToNext = setInterval(function() {
-  if (current >= questions.length - 1) {clearInterval(goToNext)}
+  if (current >= questions.length) {clearInterval(goToNext)}
 	  else {
 	  if (phase === 0) {
 		for (let j=0; j<document.querySelectorAll("#choose_panel tr").length - 1; j++) {
